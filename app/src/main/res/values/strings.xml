@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">RateEat</string>
+    <string name="title_activity_signup">Sign up</string>
+
+
+    <!-- Login -->
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_btn">Login</string>
+    <string name="login_goto_signup">No account yet? Create one</string>
+
+    <!-- Sign up -->
+    <string name="signup_name">Name</string>
+    <string name="signup_email">Email</string>
+    <string name="signup_password">Password</string>
+    <string name="signup_btn">Create Account</string>
+    <string name="signup_goto_login">Already a member? Login</string>
+
+    <!-- Main -->
+    <string name="title_activity_main">RateEat</string>
+    <string name="checkin">Check in!</string>
+
+    <!-- Details -->
+    <string name="new_rest_name">Name</string>
+    <string name="new_rest_location">Location</string>
+    <string name="submit">Submit!</string>
+
+    <!-- Menu -->
+    <string name="menu_home">Home</string>
+    <string name="menu_profile">My Profile</string>
+    <string name="menu_logout">Logout</string>
+    <string name="title_activity_rest_page">RestPage</string>
+
+    <!-- Taste Menu -->
+    <string name="menu_taste_profile">Go to taster</string>
+    <string name="menu_taste_edit">Edit</string>
+    <string name="menu_taste_delete">Delete</string>
+
+    <!-- Taste -->
+    <string name="taste_page_title">Title:</string>
+    <string name="taste_page_date">Date:</string>
+    <string name="taste_page_desc">Write description here</string>
+    <string name="taste_page_button">Submit!</string>
+
+    <string name="pick_image_intent_text">Select how to take picture</string>
+
+    <string name="ffu">Next version!</string>
+
+    <string name="add_photo_camera">Take photo</string>
+    <string name="add_photo_gallery">Choose from library</string>
+
+    <string-array name="add_photo">
+        <item>@string/add_photo_camera</item>
+        <item>@string/add_photo_gallery</item>
+    </string-array>
+</resources>
