@@ -7,7 +7,7 @@
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
     <string name="login_btn">Login</string>
-    <string name="login_goto_signup">No account yet? Create one</string>
+    <string name="login_goto_signup">Join us now! Create new account!</string>
 
     <!-- Sign up -->
     <string name="signup_name">Name</string>
@@ -42,12 +42,12 @@
     <string name="taste_page_desc">Write description here</string>
     <string name="taste_page_button">Submit!</string>
 
-    <string name="pick_image_intent_text">Select how to take picture</string>
+    <string name="pick_image_intent_text">Select how to take a picture</string>
 
     <string name="ffu">Next version!</string>
 
-    <string name="add_photo_camera">Take photo</string>
-    <string name="add_photo_gallery">Choose from library</string>
+    <string name="add_photo_camera">Take a photo</string>
+    <string name="add_photo_gallery">Choose one from library</string>
 
     <string-array name="add_photo">
         <item>@string/add_photo_camera</item>

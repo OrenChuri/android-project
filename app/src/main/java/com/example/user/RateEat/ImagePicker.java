@@ -40,7 +40,7 @@ public class ImagePicker extends Activity{
 
         final String[] items = getResources().getStringArray(R.array.add_photo);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Add Photo!");
+        builder.setTitle(getResources().getString(R.string.pick_image_intent_text));
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {

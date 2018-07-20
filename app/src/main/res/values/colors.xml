@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#192b3f</color>
-    <color name="primary_dark">#14283f</color>
-    <color name="primary_darker">#0a1e46</color>
+    <!--<color name="primary">#607d89</color>-->
+    <color name="primary">#ce3b45</color>
+    <!--<color name="primary_dark">#2a4a70</color>-->
+    <color name="primary_dark">#8e1f26</color>
+    <!--<color name="primary_darker">#233d72</color>-->
+    <color name="primary_darker">#6d1117</color>
     <color name="accent">#FFFFFF</color>
 
-    <color name="drawer_items">#FF0000</color>
+    <!--<color name="drawer_items">#FF0000</color>-->
+    <color name="drawer_items">#000000</color>
 
     <color name="black">#000000</color>
     <color name="jet">#222222</color>
