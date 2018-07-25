@@ -74,7 +74,7 @@ public class HistorySpec extends Fragment {
 //                                tran.replace(R.id.content, fragment);
 //                                tran.commit();
                             case R.id.menu_taste_edit:
-                                Toast.makeText(myContext, "For future use", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(myContext, "this feature will be available in next version", Toast.LENGTH_SHORT).show();
                                 break;
                             case R.id.menu_taste_delete:
                                 if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(currProfile)) {

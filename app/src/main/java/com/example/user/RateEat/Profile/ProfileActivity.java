@@ -101,11 +101,7 @@ public class ProfileActivity extends Fragment {
         specHistory.setIndicator("History", null);
         tabHost.addTab(specHistory, HistorySpec.class, getArguments());
 
-        TabHost.TabSpec specFriends = tabHost.newTabSpec("friends");
-        specFriends.setIndicator("Friends", ContextCompat.getDrawable(myContext, R.drawable.friends));
-        tabHost.addTab(specFriends, FriendsSpec.class, getArguments());
-
-        tabHost.addTab(tabHost.newTabSpec("favs").setIndicator("Favs", null),
+        tabHost.addTab(tabHost.newTabSpec("favorits").setIndicator("Favorits", null),
                 FavsSpec.class, getArguments());
 
         tabHost.setCurrentTabByTag("profile_history_spec");

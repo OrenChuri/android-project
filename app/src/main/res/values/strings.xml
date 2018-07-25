@@ -44,7 +44,7 @@
 
     <string name="pick_image_intent_text">Select how to take a picture</string>
 
-    <string name="ffu">Next version!</string>
+    <string name="next_version">This feature will be available in next version</string>
 
     <string name="add_photo_camera">Take a photo</string>
     <string name="add_photo_gallery">Choose one from library</string>
