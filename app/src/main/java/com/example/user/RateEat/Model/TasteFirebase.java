@@ -21,6 +21,7 @@ import java.util.Map;
 public class TasteFirebase extends Database<Taste>{
     public final String TASTE_TABLE = "tastes";
     public final String USER_TASTES_TABLE = "user-tastes";
+    public final String USER_FAV_TABLE = "user-favs";
 
     private DatabaseReference db;
 
@@ -207,6 +208,13 @@ public class TasteFirebase extends Database<Taste>{
         userTasteJSON.put(String.format("/%s/%s/%s/%s",
                 USER_TASTES_TABLE, FirebaseAuth.getInstance().getCurrentUser().getUid(), restId, key), true);
         db.updateChildren(userTasteJSON);
+
+        if (stars == 5){
+            Map<String, Object> userFavJSON = new HashMap<>();
+            userFavJSON.put(String.format("/%s/%s/%s/%s",
+                    USER_FAV_TABLE, FirebaseAuth.getInstance().getCurrentUser().getUid(), restId, key), true);
+            db.updateChildren(userFavJSON);
+        }
     }
 
     /* ============================== Delete ============================== */
