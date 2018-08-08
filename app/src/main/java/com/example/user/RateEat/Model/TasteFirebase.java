@@ -223,5 +223,6 @@ public class TasteFirebase extends Database<Taste>{
     public void delete(Taste taste) {
         db.child(TASTE_TABLE).child(taste.restId).child(taste.id).removeValue();
         db.child(USER_TASTES_TABLE).child(taste.authorId).child(taste.restId).child(taste.id).removeValue();
+        db.child(USER_FAV_TABLE).child(taste.authorId).child(taste.restId).child(taste.id).removeValue();
     }
 }

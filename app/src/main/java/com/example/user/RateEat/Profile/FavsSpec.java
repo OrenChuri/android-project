@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import com.example.user.RateEat.Model.Model;
 import com.example.user.RateEat.Model.Restaurant;
 import com.example.user.RateEat.Restaurant.RestListAdapter;
+import com.example.user.RateEat.Restaurant.RestPage;
 import com.example.user.RateEat.R;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -49,9 +51,16 @@ public class FavsSpec extends Fragment {
         restsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
-                Log.d(getClass().getName(), "On item click" + position);
-                int pos = parent.getPositionForView(v);
-                final Restaurant currRest = (Restaurant)adapter.getItem(pos);
+//                Log.d(getClass().getName(), "On item click" + position);
+//                int pos = parent.getPositionForView(v);
+//                final Restaurant currRest = (Restaurant)adapter.getItem(pos);
+//
+//
+//                Fragment fragment = RestPage.newInstance(currRest);
+//
+//                FragmentTransaction tran = getFragmentManager().beginTransaction();
+//                tran.replace(R.id.content, fragment).addToBackStack(RestPage.class.getName());
+//                tran.commit();
 
             }
         });

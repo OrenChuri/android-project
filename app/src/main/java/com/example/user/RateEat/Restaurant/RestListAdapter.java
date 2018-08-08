@@ -1,7 +1,10 @@
 package com.example.user.RateEat.Restaurant;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -42,9 +45,9 @@ public class RestListAdapter extends BaseAdapter implements Listeners.StatusList
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        if (view == null){
+        if (view == null) {
             LayoutInflater inflater = LayoutInflater.from(myContext);
-            view = inflater.inflate(R.layout.rest_item,null);
+            view = inflater.inflate(R.layout.rest_item, null);
         }
 
         TextView name = (TextView) view.findViewById(R.id.restuarant_item_title);
