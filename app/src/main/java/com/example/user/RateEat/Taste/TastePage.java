@@ -140,7 +140,7 @@ public class TastePage extends AppCompatActivity{
         String date  = _date.getText().toString();
         String desc = _desc.getText().toString();
 
-        if (title.isEmpty() || title.length() <= 3) {
+        if (title.isEmpty() || title.length() < 3) {
             _title.setError("at least 3 characters");
             valid = false;
         } else {

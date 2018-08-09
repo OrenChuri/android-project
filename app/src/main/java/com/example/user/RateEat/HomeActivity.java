@@ -70,6 +70,7 @@ public class HomeActivity extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
         ListView restaurantsView = (ListView)view.findViewById(R.id.listRestaurants);
         adapter = new CustomAdapter();
 
@@ -84,13 +85,13 @@ public class HomeActivity extends Fragment {
 
         restaurantsView.setAdapter(adapter);
 
-        // Set footer
-        TextView footer = new TextView(view.getContext());
-        footer.setText("Add new rest!");
-        footer.setTextSize(30);
-        footer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        // Set header
+        TextView header = new TextView(view.getContext());
+        header.setText("Add new rest!");
+        header.setTextSize(30);
+        header.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
-        footer.setOnClickListener(
+        header.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -100,7 +101,7 @@ public class HomeActivity extends Fragment {
                 }
         );
 
-        restaurantsView.addFooterView(footer);
+        restaurantsView.addHeaderView(header);
     }
 
     @Override
