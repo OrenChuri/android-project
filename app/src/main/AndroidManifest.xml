@@ -36,12 +36,14 @@
             android:label="@string/title_activity_signup"
             android:theme="@style/AppTheme.Dark" />
         <activity android:name=".Taste.TastePage" />
-        <activity android:name=".ImagePicker"
-                android:excludeFromRecents="true"
-                android:launchMode="singleInstance"
-                android:taskAffinity=""
-                android:theme="@android:style/Theme.Dialog" >
-        </activity>
+        <activity
+            android:name=".ImagePicker"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Dialog"/>
+
+        <activity android:name=".EditTaste" />
     </application>
 
 </manifest>

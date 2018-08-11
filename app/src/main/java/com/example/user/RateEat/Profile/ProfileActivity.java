@@ -56,6 +56,8 @@ public class ProfileActivity extends Fragment {
         return myFragment;
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,

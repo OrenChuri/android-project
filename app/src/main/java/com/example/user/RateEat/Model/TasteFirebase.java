@@ -50,7 +50,9 @@ public class TasteFirebase extends Database<Taste>{
 
                 for (DataSnapshot restSnapshot : dataSnapshot.getChildren()) {
                     for (DataSnapshot snapshot: restSnapshot.getChildren()) {
-                        list.add(snapshot.getValue(Taste.class));
+                        Taste taste = snapshot.getValue(Taste.class);
+                        if(!taste.isDeleted)
+                            list.add(taste);
                     }
                 }
 
@@ -86,7 +88,9 @@ public class TasteFirebase extends Database<Taste>{
                 ArrayList<Taste> list = new ArrayList<Taste>();
 
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                    list.add(snapshot.getValue(Taste.class));
+                    Taste taste = snapshot.getValue(Taste.class);
+                    if(!taste.isDeleted)
+                        list.add(taste);
                 }
 
                 listener.onComplete(list);
@@ -150,7 +154,8 @@ public class TasteFirebase extends Database<Taste>{
                         getTasteById(restSnapshot.getKey(), tasteSnapshot.getKey(), new Listeners.StatusListener<Taste>() {
                             @Override
                             public void onComplete(Taste item) {
-                                list.add(item);
+                                if(!item.isDeleted)
+                                    list.add(item);
                                 pendingLoadCount[0]--;
 
                                 if (pendingLoadCount[0] == 0)
@@ -188,7 +193,6 @@ public class TasteFirebase extends Database<Taste>{
         }
 
         // Get key
-        Log.d("koko","bbb");
         String key = db.child(TASTE_TABLE).child(restId).push().getKey();
         Taste taste = new Taste(key, restId, title,
                 FirebaseAuth.getInstance().getCurrentUser().getUid(), FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),
@@ -221,8 +225,35 @@ public class TasteFirebase extends Database<Taste>{
 
     @Override
     public void delete(Taste taste) {
-        db.child(TASTE_TABLE).child(taste.restId).child(taste.id).removeValue();
+        //db.child(TASTE_TABLE).child(taste.restId).child(taste.id).removeValue();
+        //db.child(USER_TASTES_TABLE).child(taste.authorId).child(taste.restId).child(taste.id).removeValue();
+        //db.child(USER_FAV_TABLE).child(taste.authorId).child(taste.restId).child(taste.id).removeValue();
+
+        Map<String, Object> values = taste.toMap();
+        values.put("isDeleted", true);
+
+        db.child(TASTE_TABLE).child(taste.restId).child(taste.id).setValue(values);
         db.child(USER_TASTES_TABLE).child(taste.authorId).child(taste.restId).child(taste.id).removeValue();
         db.child(USER_FAV_TABLE).child(taste.authorId).child(taste.restId).child(taste.id).removeValue();
     }
+
+    @Override
+    public void edit(Taste taste) {
+
+        Map<String, Object> values = taste.toMap();
+        values.put("lastUpdated", ServerValue.TIMESTAMP);
+        db.child(TASTE_TABLE).child(taste.restId).child(taste.id).setValue(values);
+
+        if (taste.starCount == 5){
+            Map<String, Object> userFavJSON = new HashMap<>();
+            userFavJSON.put(String.format("/%s/%s/%s/%s",
+                    USER_FAV_TABLE, FirebaseAuth.getInstance().getCurrentUser().getUid(), taste.restId, taste.id), true);
+            db.updateChildren(userFavJSON);
+        }
+        else {
+//            db.child(USER_FAV_TABLE).child(taste.authorId).child(taste.restId).child(taste.id).removeValue();
+        }
+
+    }
+
 }

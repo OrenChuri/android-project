@@ -28,6 +28,7 @@ import com.example.user.RateEat.Model.Model;
 import com.example.user.RateEat.Model.Restaurant;
 import com.example.user.RateEat.Model.Taste;
 import com.example.user.RateEat.R;
+import com.example.user.RateEat.SingletonTasteViewModelFactory;
 import com.example.user.RateEat.Taste.TasteListAdapter;
 import com.example.user.RateEat.Taste.TastePage;
 import com.example.user.RateEat.Taste.TasteViewModel;
@@ -117,7 +118,7 @@ public class RestPage extends Fragment {
             }
         });
 
-        TasteViewModel viewModel = ViewModelProviders.of(this).get(TasteViewModel.class);
+        TasteViewModel viewModel = ViewModelProviders.of(this, SingletonTasteViewModelFactory.get()).get(TasteViewModel.class);
         viewModel.setRest(currRest);
 
         viewModel.getList().observe(this, new Observer<List<Taste>>() {

@@ -8,6 +8,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 import android.support.annotation.NonNull;
 
 import com.google.firebase.database.Exclude;
@@ -33,6 +34,7 @@ public class Taste {
     public String date;
     public float starCount = 0;
     public long lastUpdated;
+    public boolean isDeleted;
 
     // Default constructor required for calls to DataSnapshot.getValue(Taste.class)
     public Taste() {}
@@ -51,6 +53,7 @@ public class Taste {
         this.starCount = stars;
         this.date = date;
         this.lastUpdated = 0;
+        isDeleted = false;
     }
 
     @Exclude
@@ -65,6 +68,7 @@ public class Taste {
         result.put("imageURL", imageURL);
         result.put("starCount", starCount);
         result.put("date", date);
+        result.put("isDeleted", isDeleted);
 
         return result;
     }
@@ -76,13 +80,13 @@ public class Taste {
 
         @Dao
     public interface TasteDAO {
-        @Query("SELECT * FROM Taste")
+        @Query("SELECT * FROM Taste WHERE isDeleted = 0")
         List<Taste> getAll();
 
-        @Query("SELECT * FROM Taste WHERE id = :id")
+        @Query("SELECT * FROM Taste WHERE id = :id and isDeleted = 0")
         Taste getById(String id);
 
-        @Query("SELECT * FROM Taste WHERE restId = :restId")
+        @Query("SELECT * FROM Taste WHERE restId = :restId and isDeleted = 0")
         List<Taste> getByRestId(String restId);
 
         @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -90,5 +94,8 @@ public class Taste {
 
         @Delete
         void delete(Taste taste);
+
+        @Update
+        void update(Taste taste);
     }
 }

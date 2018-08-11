@@ -94,4 +94,9 @@ public class UserFirebase extends Database<User> {
 
         db.child(TABLE).child(item.id).removeValue();
     }
+
+    @Override
+    public void edit(User item) {
+
+    }
 }

@@ -16,4 +16,6 @@ public abstract class Database<T> {
     abstract public void insert(T item);
 
     abstract public void delete(T item);
+
+    abstract public void edit(T item);
 }

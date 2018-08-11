@@ -160,4 +160,9 @@ public class RestaurantFirebase extends Database<Restaurant>{
 
         AppLocalStore.db.restaurantDao().delete(item);
     }
+
+    @Override
+    public void edit(Restaurant item) {
+
+    }
 }

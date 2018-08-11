@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.example.user.RateEat.MyApplication;
 import com.example.user.RateEat.Utils;
@@ -61,9 +62,29 @@ public class TasteRepository {
         @Override
         protected Boolean doInBackground(Taste... tastes) {
             for (Taste taste : tastes) {
-                AppLocalStore.db.tasteDao().delete(taste);
+                taste.isDeleted = true;
+                AppLocalStore.db.tasteDao().update(taste);
             }
 
+            return true;
+        }
+    }
+
+    static public void update(final Taste taste) {
+        Model.getInstance().tasteModel.edit(taste);
+
+        //Utils.deleteImage(taste.imageURL);
+
+        UpdateTask task = new UpdateTask();
+        task.execute(taste);
+    }
+
+    static class UpdateTask extends AsyncTask<Taste, String, Boolean> {
+        @Override
+        protected Boolean doInBackground(Taste... tastes) {
+            for (Taste taste : tastes) {
+                AppLocalStore.db.tasteDao().update(taste);
+            }
             return true;
         }
     }
