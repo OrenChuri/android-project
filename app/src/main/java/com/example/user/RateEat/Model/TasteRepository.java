@@ -56,6 +56,7 @@ public class TasteRepository {
 
         DeleteTask task = new DeleteTask();
         task.execute(taste);
+
     }
 
     static class DeleteTask extends AsyncTask<Taste, String, Boolean> {

@@ -82,12 +82,6 @@ public class HistorySpec extends Fragment {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
-                            // Next version!
-//                            case R.id.menu_taste_profile:
-//                                Fragment fragment = ProfileActivity.newInstance(currProfile);
-//                                FragmentTransaction tran = getFragmentManager().beginTransaction();
-//                                tran.replace(R.id.content, fragment);
-//                                tran.commit();
                             case R.id.menu_taste_edit:
                                 //Toast.makeText(myContext, "this feature will be available in next version", Toast.LENGTH_SHORT).show();
 
@@ -103,6 +97,8 @@ public class HistorySpec extends Fragment {
                                 intent.putExtra("title", currTaste.title);
 
                                 startActivityForResult(intent, EDIT_TASTE);
+
+//                                adapter.notifyDataSetChanged();
                                 break;
                             case R.id.menu_taste_delete:
                                 if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(currProfile)) {
@@ -128,6 +124,7 @@ public class HistorySpec extends Fragment {
         List<Restaurant> resList = restaurantsViewModel.getList().getValue();
 
         TasteViewModel viewModel = ViewModelProviders.of(this, SingletonTasteViewModelFactory.get()).get(TasteViewModel.class);
+//        TasteViewModel viewModel = ViewModelProviders.of(this).get(TasteViewModel.class);
 
         for (Restaurant r : resList) {
             viewModel.setRest(r);

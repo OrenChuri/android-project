@@ -118,7 +118,8 @@ public class RestPage extends Fragment {
             }
         });
 
-        TasteViewModel viewModel = ViewModelProviders.of(this, SingletonTasteViewModelFactory.get()).get(TasteViewModel.class);
+//        TasteViewModel viewModel = ViewModelProviders.of(this, SingletonTasteViewModelFactory.get()).get(TasteViewModel.class);
+        TasteViewModel viewModel = ViewModelProviders.of(this).get(TasteViewModel.class);
         viewModel.setRest(currRest);
 
         viewModel.getList().observe(this, new Observer<List<Taste>>() {
