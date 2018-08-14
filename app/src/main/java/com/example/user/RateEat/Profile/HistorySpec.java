@@ -124,7 +124,10 @@ public class HistorySpec extends Fragment {
         List<Restaurant> resList = restaurantsViewModel.getList().getValue();
 
         TasteViewModel viewModel = ViewModelProviders.of(this, SingletonTasteViewModelFactory.get()).get(TasteViewModel.class);
-//        TasteViewModel viewModel = ViewModelProviders.of(this).get(TasteViewModel.class);
+//        viewModel.allUsers(currProfile, adapter);
+
+
+////        TasteViewModel viewModel = ViewModelProviders.of(this).get(TasteViewModel.class);
 
         for (Restaurant r : resList) {
             viewModel.setRest(r);

@@ -80,13 +80,16 @@ public class Taste {
 
         @Dao
     public interface TasteDAO {
-        @Query("SELECT * FROM Taste WHERE isDeleted = 0")
+        @Query("SELECT * FROM Taste")/* WHERE isDeleted = 0")*/
+//        @Query("SELECT * FROM Taste WHERE isDeleted = 0")
         List<Taste> getAll();
 
-        @Query("SELECT * FROM Taste WHERE id = :id and isDeleted = 0")
+        @Query("SELECT * FROM Taste WHERE id = :id")/* and isDeleted = 0")*/
+//        @Query("SELECT * FROM Taste WHERE id = :id and isDeleted = 0")
         Taste getById(String id);
 
-        @Query("SELECT * FROM Taste WHERE restId = :restId and isDeleted = 0")
+        @Query("SELECT * FROM Taste WHERE restId = :restId")/*and isDeleted = 0")*/
+//        @Query("SELECT * FROM Taste WHERE restId = :restId and isDeleted = 0")
         List<Taste> getByRestId(String restId);
 
         @Insert(onConflict = OnConflictStrategy.REPLACE)

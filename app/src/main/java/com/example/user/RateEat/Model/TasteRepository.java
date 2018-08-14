@@ -8,8 +8,10 @@ import android.util.Log;
 import android.widget.EditText;
 
 import com.example.user.RateEat.MyApplication;
+import com.example.user.RateEat.Taste.TasteListAdapter;
 import com.example.user.RateEat.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -49,6 +51,30 @@ public class TasteRepository {
         return listLiveData;
     }
 
+    public LiveData<List<Taste>> getByUser(String uid, TasteListAdapter adapter) {
+        preferencesName = getClass().getName();
+
+        synchronized (this) {
+            if (listLiveData == null) {
+                listLiveData = new MutableLiveData<List<Taste>>();
+
+                //1. get the last update date
+                long lastUpdateDate = 0;
+                try {
+                    lastUpdateDate = MyApplication.getMyContext()
+                            .getSharedPreferences(preferencesName, MODE_PRIVATE).getLong("lastUpdateDate", 0);
+                }catch (Exception e){
+
+                }
+
+                //2. get all records that where updated since last update date
+                Model.getInstance().tasteModel.getUserTastes(uid, adapter);
+            }
+        }
+
+        return listLiveData;
+    }
+
     static public void delete(final Taste taste) {
         Model.getInstance().tasteModel.delete(taste);
 
@@ -73,8 +99,6 @@ public class TasteRepository {
 
     static public void update(final Taste taste) {
         Model.getInstance().tasteModel.edit(taste);
-
-        //Utils.deleteImage(taste.imageURL);
 
         UpdateTask task = new UpdateTask();
         task.execute(taste);
@@ -120,7 +144,12 @@ public class TasteRepository {
                     //3. update the local DB
                     long reacentUpdate = lastUpdateDate;
                     for (Taste item : data) {
-                        AppLocalStore.db.tasteDao().insertAll(item);
+                        if (item.isDeleted == false){
+                            AppLocalStore.db.tasteDao().insertAll(item);
+                        }
+                        else {
+                            AppLocalStore.db.tasteDao().delete(item);
+                        }
                         if (item.lastUpdated > reacentUpdate) {
                             reacentUpdate = item.lastUpdated;
                         }

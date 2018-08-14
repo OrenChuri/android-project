@@ -89,7 +89,7 @@ public class TasteFirebase extends Database<Taste>{
 
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     Taste taste = snapshot.getValue(Taste.class);
-                    if(!taste.isDeleted)
+//                    if(!taste.isDeleted)
                         list.add(taste);
                 }
 

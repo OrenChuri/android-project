@@ -3,6 +3,7 @@ package com.example.user.RateEat.Taste;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.util.Log;
 
 import com.example.user.RateEat.Model.Restaurant;
 import com.example.user.RateEat.Model.Taste;
@@ -23,7 +24,9 @@ public class TasteViewModel extends ViewModel{
         list = repo.getByRest(rest);
     }
 
-    public LiveData<List<Taste>> getList() {
-        return list;
+    public void allUsers(String uid, TasteListAdapter adapter) {
+        list = repo.getByUser(uid, adapter);
     }
+
+    public LiveData<List<Taste>> getList() { return list;    }
 }
