@@ -24,8 +24,8 @@ public class TasteViewModel extends ViewModel{
         list = repo.getByRest(rest);
     }
 
-    public void allUsers(String uid, TasteListAdapter adapter) {
-        list = repo.getByUser(uid, adapter);
+    public void allUsers(String uid) {
+        list = repo.getByUser(uid);
     }
 
     public LiveData<List<Taste>> getList() { return list;    }

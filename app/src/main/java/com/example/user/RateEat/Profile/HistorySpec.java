@@ -63,7 +63,7 @@ public class HistorySpec extends Fragment {
 
         currProfile = getArguments().getString("UID", FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        Model.getInstance().tasteModel.getUserTastes(currProfile, adapter);
+//        Model.getInstance().tasteModel.getUserTastes(currProfile, adapter);
 
         tastesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
@@ -123,14 +123,13 @@ public class HistorySpec extends Fragment {
         RestaurantsViewModel restaurantsViewModel = ViewModelProviders.of(this).get(RestaurantsViewModel.class);
         List<Restaurant> resList = restaurantsViewModel.getList().getValue();
 
-        TasteViewModel viewModel = ViewModelProviders.of(this, SingletonTasteViewModelFactory.get()).get(TasteViewModel.class);
-//        viewModel.allUsers(currProfile, adapter);
+//        TasteViewModel viewModel = ViewModelProviders.of(this, SingletonTasteViewModelFactory.get()).get(TasteViewModel.class);
+        TasteViewModel viewModel = ViewModelProviders.of(this).get(TasteViewModel.class);
+        viewModel.allUsers(currProfile);
 
 
-////        TasteViewModel viewModel = ViewModelProviders.of(this).get(TasteViewModel.class);
-
-        for (Restaurant r : resList) {
-            viewModel.setRest(r);
+//        for (Restaurant r : resList) {
+//            viewModel.setRest(r);
 
             viewModel.getList().observe(this, new Observer<List<Taste>>() {
                 @Override
@@ -143,7 +142,7 @@ public class HistorySpec extends Fragment {
                     if (adapter != null) adapter.notifyDataSetChanged();
                 }
             });
-        }
+//        }
 
         return v;
     }

@@ -49,7 +49,7 @@ public class EditTaste extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_taste);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         author = (String) intent.getSerializableExtra("author");
         authorId = (String) intent.getSerializableExtra("authorId");
         date = (String) intent.getSerializableExtra("date");
@@ -122,6 +122,7 @@ public class EditTaste extends Activity {
                 final Taste taste = new Taste(id, restId, title, authorId, author, description,
                         starCount, imageURL, date);
                 TasteRepository.update(taste);
+//                setResult(RESULT_OK, intent);
                 finish();
             }
         });

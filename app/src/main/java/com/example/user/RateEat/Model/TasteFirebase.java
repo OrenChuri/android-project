@@ -154,9 +154,12 @@ public class TasteFirebase extends Database<Taste>{
                         getTasteById(restSnapshot.getKey(), tasteSnapshot.getKey(), new Listeners.StatusListener<Taste>() {
                             @Override
                             public void onComplete(Taste item) {
-                                if(!item.isDeleted)
-                                    list.add(item);
-                                pendingLoadCount[0]--;
+//                                if(!item.isDeleted)
+                                list.add(item);
+
+                                if (pendingLoadCount[0] > 0) {
+                                    pendingLoadCount[0]--;
+                                }
 
                                 if (pendingLoadCount[0] == 0)
                                 {

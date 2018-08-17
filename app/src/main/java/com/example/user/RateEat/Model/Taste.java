@@ -92,6 +92,10 @@ public class Taste {
 //        @Query("SELECT * FROM Taste WHERE restId = :restId and isDeleted = 0")
         List<Taste> getByRestId(String restId);
 
+        @Query("SELECT * FROM Taste WHERE authorId = :userId")/*and isDeleted = 0")*/
+//        @Query("SELECT * FROM Taste WHERE authorId = :userId and isDeleted = 0")
+        List<Taste> getByUserId(String userId);
+
         @Insert(onConflict = OnConflictStrategy.REPLACE)
         void insertAll(Taste... tastes);
 

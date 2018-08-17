@@ -39,7 +39,7 @@ public class TasteRepository {
                 Listeners.StatusListener<List<Taste>> listener = new Listeners.StatusListener<List<Taste>>() {
                     @Override
                     public void onComplete(List<Taste> data) {
-                        updateDataInLocalStorage(data, rest.id);
+                        updateDataInLocalStorage(data, rest.id, null, true);
                     }
                 };
 
@@ -51,7 +51,7 @@ public class TasteRepository {
         return listLiveData;
     }
 
-    public LiveData<List<Taste>> getByUser(String uid, TasteListAdapter adapter) {
+    public LiveData<List<Taste>> getByUser(final String uid) {
         preferencesName = getClass().getName();
 
         synchronized (this) {
@@ -67,8 +67,15 @@ public class TasteRepository {
 
                 }
 
+                Listeners.StatusListener<List<Taste>> listener = new Listeners.StatusListener<List<Taste>>() {
+                    @Override
+                    public void onComplete(List<Taste> data) {
+                        updateDataInLocalStorage(data, null, uid, false);
+                    }
+                };
+
                 //2. get all records that where updated since last update date
-                Model.getInstance().tasteModel.getUserTastes(uid, adapter);
+                Model.getInstance().tasteModel.getUserTastes(uid, listener);
             }
         }
 
@@ -114,17 +121,22 @@ public class TasteRepository {
         }
     }
 
-    private void updateDataInLocalStorage(List<Taste> data, String restId) {
+    private void updateDataInLocalStorage(List<Taste> data, String restId, String userId, boolean isByRest) {
         Log.d(getClass().getName(), "got items from firebase: " + data.size());
-        MyTask task = new MyTask(restId);
+        MyTask task = new MyTask(restId, userId, isByRest);
         task.execute(data);
     }
 
     class MyTask extends AsyncTask<List<Taste>, String, List<Taste>> {
         private String restId;
+        private String userId;
+        private boolean isByRest;
 
-        MyTask(String id) {
-            this.restId = id;
+//        MyTask(String id) { this.restId = id; }
+        MyTask(String rid, String uid, boolean isByRest) {
+            this.restId = rid;
+            this.userId = uid;
+            this.isByRest = isByRest;
         }
 
         @Override
@@ -160,7 +172,14 @@ public class TasteRepository {
                     editor.commit();
                 }
 
-                List<Taste> lst = AppLocalStore.db.tasteDao().getByRestId(restId);
+                List<Taste> lst;
+
+                if (isByRest) {
+                    lst = AppLocalStore.db.tasteDao().getByRestId(restId);
+                }
+                else {
+                    lst = AppLocalStore.db.tasteDao().getByUserId(userId);
+                }
                 Log.d(getClass().getName(),"finish updateDataInLocalStorage in thread");
 
                 return lst;
